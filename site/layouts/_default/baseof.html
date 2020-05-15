@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="{{ $.Site.Language.Lang }}">
-  {{ partial "head" . }}
+  {{ partial "header" . }}
   <body class="sans-serif">
 
-    {{ block "header" . }}{{ partial "nav" . }}{{end}}
 
-    {{ block "main" . }}{{ end }}
+    <div class="uk-container">
+      {{ block "head" . }}{{ partial "nav" . }}{{end}}
+
+      {{ block "main" . }}{{ end }}
+    </div>
 
     {{ block "footer" . }}{{ partial "footer" . }}{{end}}
 

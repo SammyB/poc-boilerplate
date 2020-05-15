@@ -1,13 +1,25 @@
 {{ define "main" }}
 
-{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
+    {{ range .Params.Modules }}
+        {{ $path := printf "%s%s%s" "modules/" .type ".html" }}
+        {{ $fullpath := printf "%s%s" "layouts/partials/" $path }}
+        {{ if (fileExists $fullpath) -}}
+            {{ partial $path .}}
+        {{ else }}
+            {{ if ne (getenv "HUGO_ENV") "production" }}
+                <h1>Module does not exist</h1>
+            {{ end }}
+        {{- end }}
+    {{ end }}
 
-{{ partial "short-text" .Params.blurb}}
+    {{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
 
-{{ partial "2-up" .Params }}
+    {{ partial "short-text" .Params.blurb}}
 
-{{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
+    {{ partial "2-up" .Params }}
 
-{{ partial "blog" . }}
+    {{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
+
+    {{ partial "blog" . }}
 
 {{ end }}
