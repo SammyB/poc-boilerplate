@@ -1,9 +1,47 @@
 baseurl = "/"
 languageCode = "en-us"
 languageLang = "en"
-title = "Homepage"
+title = "CMHAA"
 
 # RSS, categories and tags disabled for an easy start
-# See configuration options for more details: 
+# See configuration options for more details:
 # https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+#disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+disableKinds = ["RSS"]
+
+[taxonomies]
+  category = "category"
+  focus = "focus"
+  role = "role"
+  organisation_size = "organisation_size"
+  industry = "industry"
+
+[outputs]
+home = ["HTML", "Algolia"]
+
+[menu]
+  [[menu.main]]
+    identifier = "aboutus"
+    name = "About us"
+    url = "#"
+
+  [[menu.main]]
+    identifier = "ourstories"
+    name = "Our Stories"
+    url = "#"
+
+  [[menu.main]]
+    identifier = "contactus"
+    name = "Contact Us"
+    url = "#"
+
+# Algolia config
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "category"]
+params = ["category"]

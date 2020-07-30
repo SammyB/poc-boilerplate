@@ -13,27 +13,130 @@ collections: # A list of collections the CMS should be able to edit
       - { label: "Intro Blurb", name: "description", widget: "text" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "resources"
+    label: "Resources"
+    folder: "site/content/resources"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - {
+        label: "Banner Image",
+        name: "banner_image",
+        widget: "image",
+        required: false,
+      }
+      - { label: "Banner Subcontent", name: "banner_subcontent", widget: markdown, required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: [
+          "Personal stories",
+          "Case studies",
+          "Fact sheets",
+          "Guides & Toolkits",
+          "Support services",
+          "Research"
+        ]
+      - label: "Focus"
+        name: "focus"
+        widget: "select"
+        options: [
+          "Support for leaders, colleagues and staff",
+          "Assessment of organisational approach",
+          "Improving workplace culture",
+          "Developing policy and practice"
+        ]
+      - label: "Role"
+        name: "role"
+        widget: "select"
+        options: [
+          "CEO or leadership",
+          "Senior manager",
+          "HR professional",
+          "Line manager/supervisor",
+          "Sole trader",
+          "Employee",
+          "Health or wellbeing lead",
+          "Champion or advocate"
+        ]
+      - label: "Organisation size"
+        name: "organisation_size"
+        widget: "select"
+        options: [
+          "Micro (<10 employees)",
+          "Small (10-49 employees)",
+          "Medium (50-249 employees)",
+          "Large (250+ employees)"
+        ]
+      - label: "Industry"
+        name: "industry"
+        widget: "select"
+        options: [
+          "Retail & consumer",
+          "Manufacturing",
+          "Property & Construction",
+          "Transport & Logistics",
+          "Law & Legal Services",
+          "Financial & Insurance Services",
+          "Business Consulting & Management",
+          "IT & Telecommunications",
+          "Healthcare",
+          "Recruitment & HR",
+          "Science & Pharmaceuticals",
+          "Tourism & Hospitality",
+          "Government & Public Agencies",
+          "Education & Training",
+          "Media, communications and digital",
+          "Occupational health & rehabilitation",
+          "Energy & Utilities",
+          "Charity, not-for-profit",
+          "Environment & agriculture",
+          "Emergency services & security"
+        ]
+      - { label: Content, name: content, widget: markdown, required: false }
+
   - name: "pages"
     label: "Pages"
     folder: "site/content"
     create: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Content", name: "content", widget: "markdown" }
+      - {
+        label: "Banner Image",
+        name: "banner_image",
+        widget: "image",
+        required: false,
+      }
       - label: "Modules"
         name: "modules"
         widget: "list"
         types:
-          - label: "Module 1"
-            name: "module-1"
+          - label: "Accordion"
+            name: "accordion"
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
+              - { label: Description, name: description, widget: markdown }
+              - { label: Image, name: image, widget: image }
+          - label: "Our Members"
+            name: "our_members"
             widget: object
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Content, name: content, widget: markdown }
-          - label: "Module 2"
-            name: "module-2"
+          - label: "Our Board"
+            name: "our_board"
             widget: object
             fields:
               - { label: Title, name: title, widget: string }
-              - { label: Sub Title, name: subtitle, widget: string }
+              - { label: Content, name: content, widget: markdown }
+          - label: "Split Title with Content"
+            name: "split_title_content"
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Lead Text, name: leadtext, widget: string }
               - { label: Content, name: content, widget: markdown }

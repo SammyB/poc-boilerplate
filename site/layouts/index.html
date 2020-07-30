@@ -1,4 +1,5 @@
 {{ define "main" }}
+    {{ partial "jumbotron" (dict "imageUrl" .Params.banner_image "title" .Title "subtitle" .Params.subtitle) }}
 
     {{ range .Params.Modules }}
         {{ $path := printf "%s%s%s" "modules/" .type ".html" }}
